@@ -31,7 +31,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         title: Text('Sample Code'),
       ),
       body: Center(
-        child: ChessDiagram(300.0),
+        child: ChessDiagram(size: 475.0, fen: "rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2")
       ),
       bottomNavigationBar: BottomAppBar(
         child: Container(

@@ -26,7 +26,9 @@ dependencies:
 
   flutter_launcher_icons: ^0.7.2+1
   chess: ^0.6.5
-  chess_vectors_flutter: ^1.0.6
+  chess_vectors_flutter: ^1.0.10
+
+  tuple: ^1.0.2
 
 dev_dependencies:
   flutter_test:
