@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:chess/chess.dart' as chess;
 
 class ChessDiagramCell extends StatelessWidget {
   final Color whiteColor = Color.fromARGB(255, 255, 206, 158);
@@ -18,6 +19,11 @@ class ChessDiagramCell extends StatelessWidget {
 }
 
 class ChessDiagram extends StatefulWidget {
+
+  final double size;
+
+  ChessDiagram([this.size]);
+
   @override
   _ChessDiagramState createState() => _ChessDiagramState();
 }
@@ -82,9 +88,8 @@ class _ChessDiagramState extends State<ChessDiagram> {
 
   @override
   Widget build(BuildContext context) {
-    final size = 200.0;
     return SizedBox.fromSize(
-        size: Size.square(size),
+        size: Size.square(widget.size),
         child: Container(
           child: GridView.count(
             crossAxisCount: 10,

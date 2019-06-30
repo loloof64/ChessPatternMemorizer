@@ -24,7 +24,6 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  int _count = 0;
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +31,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         title: Text('Sample Code'),
       ),
       body: Center(
-        child: ChessDiagram(),
+        child: ChessDiagram(300.0),
       ),
       bottomNavigationBar: BottomAppBar(
         child: Container(
@@ -40,9 +39,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => setState(() {
-              _count++;
-            }),
+        onPressed: () => {},
         tooltip: 'Increment Counter',
         child: Icon(Icons.add),
       ),
