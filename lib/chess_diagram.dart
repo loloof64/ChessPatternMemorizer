@@ -24,40 +24,54 @@ class ChessDiagram extends StatefulWidget {
   final String fen;
   final chess.Chess _chessLogic = chess.Chess();
 
-  ChessDiagram({@required this.size, @required this.fen}){
+  ChessDiagram({@required this.size, @required this.fen}) {
     _chessLogic.load(fen);
   }
 
   @override
   _ChessDiagramState createState() => _ChessDiagramState();
 
-  _getPieceAt({file: int, rank: int})
-  {
+  _getPieceAt({file: int, rank: int}) {
     assert(file >= 0 && file < 8);
     assert(rank >= 0 && rank < 8);
 
-    final coordStr = "${String.fromCharCode(97+file)}${String.fromCharCode(49+rank)}";
+    final coordStr =
+        "${String.fromCharCode(97 + file)}${String.fromCharCode(49 + rank)}";
     final piece = _chessLogic.get(coordStr);
 
-    if (piece == null) return Container();
+    if (piece == null)
+      return Container();
     else {
       var pieceStr = "${piece.color}${piece.type}";
-      switch(pieceStr){
-        case 'wp': return WhitePawn(size: size);
-        case 'wn': return WhiteKnight(size: size);
-        case 'wb': return WhiteBishop(size: size);
-        case 'wr': return WhiteRook(size: size);
-        case 'wq': return WhiteQueen(size: size);
-        case 'wk': return WhiteKing(size: size);
+      switch (pieceStr) {
+        case 'wp':
+          return WhitePawn(size: size);
+        case 'wn':
+          return WhiteKnight(size: size);
+        case 'wb':
+          return WhiteBishop(size: size);
+        case 'wr':
+          return WhiteRook(size: size);
+        case 'wq':
+          return WhiteQueen(size: size);
+        case 'wk':
+          return WhiteKing(size: size);
 
-        case 'bp': return BlackPawn(size: size);
-        case 'bn': return BlackKnight(size: size);
-        case 'bb': return BlackBishop(size: size);
-        case 'br': return BlackRook(size: size);
-        case 'bq': return BlackQueen(size: size);
-        case 'bk': return BlackKing(size: size);
+        case 'bp':
+          return BlackPawn(size: size);
+        case 'bn':
+          return BlackKnight(size: size);
+        case 'bb':
+          return BlackBishop(size: size);
+        case 'br':
+          return BlackRook(size: size);
+        case 'bq':
+          return BlackQueen(size: size);
+        case 'bk':
+          return BlackKing(size: size);
 
-        default: throw "Unrecognized piece type !";
+        default:
+          throw "Unrecognized piece type !";
       }
     }
   }
@@ -68,7 +82,7 @@ class _ChessDiagramState extends State<ChessDiagram> {
     var cellsList = <Widget>[];
 
     // first files coordinates line
-    cellsList.add(Text(""));
+    cellsList.add(Container());
     for (var file = 0; file < 8; file++) {
       final fileLetter = String.fromCharCode(file + 65);
       cellsList.add(Center(
@@ -82,7 +96,7 @@ class _ChessDiagramState extends State<ChessDiagram> {
         ),
       ));
     }
-    cellsList.add(Text(""));
+    cellsList.add(Container());
 
     // board with ranks coordinate
     for (var row = 0; row < 8; row++) {
@@ -98,16 +112,19 @@ class _ChessDiagramState extends State<ChessDiagram> {
       cellsList.add(rankText);
       for (var col = 0; col < 8; col++) {
         final isWhite = (row + col) % 2 == 0;
-        cellsList.add(Stack(children: <Widget>[
-          ChessDiagramCell(isWhite),
-          widget._getPieceAt(file: col, rank: 7-row),
-        ],));
+        cellsList.add(Stack(
+          fit: StackFit.expand,
+          children: <Widget>[
+            ChessDiagramCell(isWhite),
+            widget._getPieceAt(file: col, rank: 7 - row),
+          ],
+        ));
       }
       cellsList.add(rankText);
     }
 
     // second files coordinates line
-    cellsList.add(Text(""));
+    cellsList.add(Container());
     for (var file = 0; file < 8; file++) {
       final fileLetter = String.fromCharCode(file + 65);
       cellsList.add(Center(
@@ -121,7 +138,7 @@ class _ChessDiagramState extends State<ChessDiagram> {
         ),
       ));
     }
-    cellsList.add(Text(""));
+    cellsList.add(Container());
     return cellsList;
   }
 
